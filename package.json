@@ -1,6 +1,6 @@
 {
-  "name": "eslint-plugin-roq-linter",
-  "version": "1.0.0",
+  "name": "@roq/eslint-plugin",
+  "version": "0.0.1",
   "main": "index.js",
   "scripts": {
     "lint": "eslint '**/*.js' --fix",
@@ -12,7 +12,7 @@
   ],
   "author": "",
   "license": "MIT",
-  "description": "",
+  "description": "roq-linter aims to make sure that our code abides by the defined coding conventions in our rulebook. The aim is to achieve a higher degree of review automation.",
   "dependencies": {
     "pluralize": "^8.0.0",
     "eslint": "^7.22.0",
@@ -23,5 +23,17 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.1",
     "typescript": "^4.2.3"
-  }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roqtech/roq-linter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/roqtech/roq-linter/issues"
+  },
+  "homepage": "https://github.com/roqtech/roq-linter#readme"
 }

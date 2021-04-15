@@ -1,6 +1,6 @@
 # roq-linter
 
-So with roq-linter we want to make sure that our code adheres to our coding convention rulebook, the idea is to add automated checks by making a custom-eslint-plugin(roq-linter), to make sure the checks are in place. Obviously we don't aim to check logical workflows that require human involvement with technical expertise. But whatever can be caught before a PR goes under review, needs to be caught to reduce effort on the side of the reviewer and swaps of control between the PR owner/opener/raiser and the reviewer.
+So with roq-linter we want to make sure that our code adheres to the coding convention rulebook, the idea is to make automated checks. Obviously we don't aim to check logical workflows that require human involvement with technical expertise. But whatever can be caught before a PR goes under review, needs to be caught to reduce effort on the side of the reviewer and swaps of control between the PR owner/opener/raiser and the reviewer.
 
 ### How to configure this plugin to work with your roq project?
 So, we expose three different configurations, specific to the type of resources (backend/frontend):
@@ -11,15 +11,15 @@ So, we expose three different configurations, specific to the type of resources 
 
 Step 1: Add the roq-linter plugin as a dependency to your project:
 
-> npm install -D roq-linter
+> npm install -D @roq/eslint-plugin-roq-linter
 
 Step 2: Add required configurations to eslint configuration file(.eslintrc):
 
 Configure the plugin:
->   plugins: ['roq-linter'],
+>   plugins: ['@roq/roq-linter'],
 
 Extend the desired config:
-> extends: ['plugin:roq-linter/backendConfig','plugin:roq-linter/commonConfig'],
+> extends: ['plugin:@roq/roq-linter/backendConfig','plugin:@roq/roq-linter/commonConfig'],
 
 Add the settings for this plugin:
 
@@ -51,6 +51,7 @@ Step 3: Some rules of this plugin need to be manually configured in your eslint 
 
 > ### no-use-deprecated-modules
 > The configuration specifies the node modules that your project should not use. This rule helps in instances for modules that are popular amongst devs but have been deprecated. 
+
 > ### no-use-global-module
 > The configuration specifies the nestjs modules that are global and hence need not be imported by other modules. 
 

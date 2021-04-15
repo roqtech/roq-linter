@@ -1,4 +1,4 @@
-const pluginName = 'roq-linter';
+const pluginName = '@roq';
 
 module.exports = {
   rules: {
