@@ -1,38 +1,42 @@
 # roq-linter
-
-So with roq-linter we want to make sure that our code adheres to the coding convention rulebook, the idea is to make automated checks. Obviously we don't aim to check logical workflows that require human involvement with technical expertise. But whatever can be caught before a PR goes under review, needs to be caught to reduce effort on the side of the reviewer and swaps of control between the PR owner/opener/raiser and the reviewer.
-
+​
+The purpose of roq-linter is to ensure that code adheres to the coding convention rulebook; the goal is to perform automated checks. Clearly, we are not attempting to validate logical workflows that require human interaction or technical expertise. However, anything that can be caught prior to a PR review should be caught to minimize reviewer effort and control swaps between the PR owner/opener/raiser and the reviewer.
+​
 ### How to configure this plugin to work with your roq project?
-So, we expose three different configurations, specific to the type of resources (backend/frontend):
+We expose three distinct configurations, one for each resource type (backend/frontend and a general one):
+​
+- Common Configuration (Contains general conventions that are useful for the entire project)
+- Backend Configuration (Contains backend-related conventions that are useful for the directory in which the backend code is located).
+- Frontend Configuration (Contains frontend-related conventions that are useful for the directory in which the frontend code is located).
+​
 
-- Common Config (Contains general conventions that are useful for the entire project)
-- Backend Config (Contains backend related conventions that are useful for project's directory that contains the code for backend)
-- Frontend Config (Contains frontend related conventions that are useful for project's directory that contains the code frontend)
+**Step 1**: Add the roq-linter plugin as a dependency to your project:
+​
+> npm install -D @roq/eslint-plugin
+​
 
-Step 1: Add the roq-linter plugin as a dependency to your project:
+**Step 2**: Add required configurations to eslint configuration file(.eslintrc):
+​
+1. Configure the plugin:
+  >   plugins: ['@roq'],
 
-> npm install -D @roq/eslint-plugin-roq-linter
+2. Extend the desired config (as per project needs):
+  > extends: ['plugin:@roq/backendConfig','plugin:@roq/commonConfig'],
+​
 
-Step 2: Add required configurations to eslint configuration file(.eslintrc):
+3. Add the settings for this plugin:
+​
+The settings anticipates the following information (the path separator to use when defining these values should be a nix-styled '/') in the settings object under the 'roq-linter' key:
 
-Configure the plugin:
->   plugins: ['@roq/roq-linter'],
+> - backendBasePath (default:'backend/src') => 'The base relative path (from project's root) of backend related code'
+​
+> - frontendBasePath (default:'frontend/src') => 'The base relative path (from project's root) of frontend related code'
+​
+> - backendTestsBasePath (default:'backend/tests') => 'The relative path (from project's root) of backend related tests'
+​
+> - backendModules (default:["auth", "config", "event", "library", "platform", "user"]) => 'A list of relative paths (from backendBasePath) to backend modules'
 
-Extend the desired config:
-> extends: ['plugin:@roq/roq-linter/backendConfig','plugin:@roq/roq-linter/commonConfig'],
-
-Add the settings for this plugin:
-
-The settings expects the following details (the path separator to be used while defining these values should be nix-styled '/'):
-
-- backendBasePath (default:'backend/src') => 'The base relative path (from project's root) of backend related code'
-
-- frontendBasePath (default:'frontend/src') => 'The base relative path (from project's root) of frontend related code'
-
-- backendTestsBasePath (default:'backend/tests') => 'The relative path (from project's root) of backend related tests'
-
-- backendModules (default:["auth", "config", "event", "library", "platform", "user"]) => 'A list of relative paths (from backendBasePath) to backend modules'
-
+A sample settings object looks like =>
 ```json
 "settings": {
     "roq-linter":{
@@ -43,17 +47,24 @@ The settings expects the following details (the path separator to be used while 
     }
   }
 ```
-
-Step 3: Some rules of this plugin need to be manually configured in your eslint configuration file(.eslintrc):
-
+​
+**Step 3**: Some rules of this plugin need to be manually configured in your eslint configuration file(.eslintrc):
+​
 > ### no-invalid-dirname
-> The configuration specifies the naming criteria for your directory names, what characters, what case, also do you want to allow numbers. The default configuration is to have lowercased alphanumeric strings with dots and hyphens. 
+>
+> The configuration defines the naming criteria for your directory names, including the characters to use, the case to use, and whether or not to allow numbers. By default, lowercase alphanumeric strings with dots and hyphens are used.
+​
 
 > ### no-use-deprecated-modules
-> The configuration specifies the node modules that your project should not use. This rule helps in instances for modules that are popular amongst devs but have been deprecated. 
+>
+> The configuration specifies which node modules should not be used by your project. This rule is useful in situations where modules are popular among developers but have been deprecated.
+​
+
 
 > ### no-use-global-module
-> The configuration specifies the nestjs modules that are global and hence need not be imported by other modules. 
+>
+> The configuration declares which nestjs modules are global and thus also aims to prevent other modules to import them.
+​
 
-See our entire documentation here to know all the roq-conventions.
+To know all the roq-conventions, have a look at our entire documentation [here](https://app.archbee.io/public/EpeZApNOPw_vb0lzacxnR/lwfc-roq-integrated-rulebook).
 

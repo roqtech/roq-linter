@@ -8,7 +8,11 @@
   },
   "keywords": [
     "eslint",
-    "eslintplugin"
+    "eslintplugin",
+    "roq",
+    "react",
+    "javascript",
+    "typescript"
   ],
   "author": "",
   "license": "MIT",
