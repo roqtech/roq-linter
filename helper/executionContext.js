@@ -54,7 +54,7 @@ const get = (context) => {
     }
     const backendPath = backendBasePath || 'backend/src';
     try {
-      const [ backendPathInitToken ] = backendPath.split('/').filter(e=>e !== '');
+      const [backendPathInitToken] = backendPath.split('/').filter((e) => e !== '');
       const rootPath = path.resolve('./').replace(backendPathInitToken, '');
       const dirContents = fs.readdirSync(path.resolve(rootPath, backendPath), { withFileTypes: true });
       dirContents.forEach((e) => {
