@@ -34,16 +34,13 @@ The settings anticipates the following information (the path separator to use wh
 ​
 > - backendTestsBasePath (default:'backend/tests') => 'The relative path (from project's root) of backend related tests'
 ​
-> - backendModules (default:["auth", "config", "event", "library", "platform", "user"]) => 'A list of relative paths (from backendBasePath) to backend modules'
-
 A sample settings object looks like =>
 ```json
 "settings": {
     "roq-linter":{
       "backendBasePath": "backend/src",
       "frontendBasePath": "frontend/src",
-      "backendTestsBasePath": "backend/tests",
-      "backendModules": ["auth", "config", "event", "library", "platform", "user", "nested/sample"]
+      "backendTestsBasePath": "backend/tests"
     }
   }
 ```

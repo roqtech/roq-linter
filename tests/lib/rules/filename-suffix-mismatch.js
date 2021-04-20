@@ -1,12 +1,15 @@
 const { RuleTester } = require('eslint');
+const { resolve } = require('path');
 const ruleUnderTest = require('../../../lib/rules/filename-suffix-mismatch');
+
+const testDummiesBasePath = resolve('./tests/dummies');
 
 const ruleTesterInstance = new RuleTester({
   parserOptions: { ecmaVersion: 2021 },
   settings: {
     'roq-linter': {
-      backendBasePath: 'backend/src',
-      frontendBasePath: 'frontend/src',
+      backendBasePath: 'roq-linter/tests/dummies/backend',
+      frontendBasePath: 'roq-linter/tests/dummies/frontend',
     },
   },
 });
@@ -14,17 +17,18 @@ const ruleTesterInstance = new RuleTester({
 ruleTesterInstance.run('filename-suffix-mismatch', ruleUnderTest, {
   valid: [
     {
-      code: '// File Path : backend/src/auth/auth.module.ts',
-      filename: 'backend/src/auth/auth.module.ts',
+      code: '// File Path : tests/dummies/backend/auth/auth.module.ts',
+      filename: resolve(testDummiesBasePath, 'backend/auth/auth.module.ts'),
+
     },
     {
-      code: '// File Path : backend/src/auth/dto/auth-init-provider.dto.ts',
-      filename: 'backend/src/auth/dto/auth-init-provider.dto.ts',
+      code: '// File Path : tests/dummies/backend/auth/dtos/auth-init-provider.dto.ts',
+      filename: resolve(testDummiesBasePath, 'backend/auth/dtos/auth-init-provider.dto.ts'),
     },
   ],
   invalid: [
     {
-      code: '// File Path: backend/src/auth/auth.ts',
+      code: '// File Path: tests/dummies/backend/auth/auth.ts',
       errors: [{
         messageId: 'exceptionalSuffixMismatch',
         data: {
@@ -33,10 +37,10 @@ ruleTesterInstance.run('filename-suffix-mismatch', ruleUnderTest, {
         },
       },
       ],
-      filename: 'backend/src/auth/auth.ts',
+      filename: resolve(testDummiesBasePath, 'backend/auth/auth.ts'),
     },
     {
-      code: '// File Path: backend/src/auth/dto/auth-init.provider.dto.ts',
+      code: '// File Path: tests/dummies/backend/auth/dtos/auth-init.provider.dto.ts',
       errors: [{
         messageId: 'regularSuffixMismatch',
         data: {
@@ -44,7 +48,8 @@ ruleTesterInstance.run('filename-suffix-mismatch', ruleUnderTest, {
         },
       },
       ],
-      filename: 'backend/src/auth/dto/auth-init.provider.dto.ts',
+      filename: resolve(testDummiesBasePath, 'backend/auth/dtos/auth-init.provider.dto.ts'),
+
     },
   ],
 });

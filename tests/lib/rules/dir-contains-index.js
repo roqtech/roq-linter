@@ -8,8 +8,8 @@ const ruleTesterInstance = new RuleTester({
   parserOptions: { ecmaVersion: 2021 },
   settings: {
     'roq-linter': {
-      backendBasePath: 'tests/dummies/backend',
-      frontendBasePath: 'tests/dummies/frontend',
+      backendBasePath: 'roq-linter/tests/dummies/backend',
+      frontendBasePath: 'roq-linter/tests/dummies/frontend',
     },
   },
 });

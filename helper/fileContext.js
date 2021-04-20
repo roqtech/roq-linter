@@ -52,7 +52,11 @@ const getWordsFromCaseDifferedStrings = (strToProcess) => {
 };
 
 const get = (context) => {
-  const absoluteFilePath = context.getFilename();
+  let absoluteFilePath = context.getFilename();
+
+  if (sep !== '/' && absoluteFilePath.includes('/')) {
+    absoluteFilePath = absoluteFilePath.replace(/\//g, '\\'); // for tests to be cross-platform compliant
+  }
 
   const parentDir = {
     absolutePath: path.resolve(absoluteFilePath, '../'),
@@ -79,7 +83,7 @@ const get = (context) => {
     },
   };
 
-  const filePathParts = absoluteFilePath.split('/'); // as context object gives path in *nix-style across all platforms
+  const filePathParts = absoluteFilePath.split(sep);
   const fileName = filePathParts[filePathParts.length - 1];
   const fileTypeParts = fileName.split('.');
   const extension = `.${fileTypeParts[fileTypeParts.length - 1]}`;
