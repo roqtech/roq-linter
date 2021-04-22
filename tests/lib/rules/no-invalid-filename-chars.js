@@ -1,5 +1,5 @@
 const { RuleTester } = require('eslint');
-const ruleUnderTest = require('../../../lib/rules/no-invalid-char-in-filename');
+const ruleUnderTest = require('../../../lib/rules/no-invalid-filename-chars');
 // const { allowedNamingPattern } = require('../../../constants');
 const allowedNamingPattern = '[a-z0-9-.]+';
 
@@ -14,7 +14,7 @@ const ruleTesterInstance = new RuleTester({
   },
 });
 
-ruleTesterInstance.run('no-invalid-char-in-filename', ruleUnderTest, {
+ruleTesterInstance.run('no-invalid-filename-chars', ruleUnderTest, {
   valid: [
     {
       code: '// File Path : backend/src/auth/auth.module.ts',

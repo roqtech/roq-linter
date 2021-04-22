@@ -14,17 +14,6 @@ ruleTesterInstance.run('no-eslint-disable', ruleUnderTest, {
   ],
   invalid: [
     {
-      code: '//eslint-disable-next-line no-global-assign',
-      errors: [{
-        message: 'Avoid inline eslint rules disabling.',
-        line: 1,
-        column: 1,
-        endLine: 1,
-        endColumn: 44,
-      }],
-      filename: 'sample.ts',
-    },
-    {
       code: 'let a = 10; \n // eslint-disable-next-line \n require("fs")',
       errors: [{
         message: 'Avoid inline eslint rules disabling.',
@@ -52,7 +41,7 @@ ruleTesterInstance.run('no-eslint-disable', ruleUnderTest, {
       filename: 'sample.ts',
     },
     {
-      code: `/* eslint-disable \n no-await-in-loop */ \n const dummy=(i)=> i
+      code: `// eslint-disable \n const dummy=(i)=> i
       (async ()=>{
         for(let i=0;i<10;i++){
           await dummy(i);

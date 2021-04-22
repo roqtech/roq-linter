@@ -15,36 +15,36 @@ const ruleTesterInstance = new RuleTester({
 ruleTesterInstance.run('no-invalid-hook-resource', ruleUnderTest, {
   valid: [
     {
-      code: 'export const useAuthHook = ()=>{/* definition */}',
+      code: 'export const useAuth = ()=>{/* definition */}',
       filename: 'frontend/src/common/roq-hooks/use-auth/use-auth.hook.ts',
     },
     {
-      code: 'export const useNotifProviderHook = ()=>{/* definition */}',
+      code: 'export const useNotifProvider = ()=>{/* definition */}',
       filename: 'frontend/src/components/notifications/hooks/use-notif-provider.hook.ts',
     },
   ],
   invalid: [
     {
-      code: 'export const useAuth = ()=>{/* definition */}',
+      code: 'export const auth = ()=>{/* definition */}',
       errors: [
         {
           messageId: 'invalidExportedHookName',
           data: {
-            resourceName: 'useAuthHook',
+            resourceName: 'useAuth',
           },
         },
       ],
       filename: 'frontend/src/common/roq-hooks/use-auth/use-auth.hook.ts',
     },
     {
-      code: 'export const useNotifProviderHook = ()=>{/* definition */}',
+      code: 'export const useNotifProvider = ()=>{/* definition */}',
       errors: [
         {
           messageId: 'invalidFileName',
           line: 1,
           column: 1,
           endLine: 1,
-          endColumn: 59,
+          endColumn: 55,
         },
       ],
       filename: 'frontend/src/components/notifications/hooks/notif-provider.hook.ts',
@@ -62,7 +62,7 @@ ruleTesterInstance.run('no-invalid-hook-resource', ruleUnderTest, {
         {
           messageId: 'invalidExportedHookName',
           data: {
-            resourceName: 'useNotifProviderHook',
+            resourceName: 'useNotifProvider',
           },
           line: 1,
           column: 1,
