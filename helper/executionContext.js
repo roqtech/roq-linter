@@ -8,7 +8,7 @@ const {
 const getPathPatterns = (backendBasePattern, frontendBasePattern, backendModuleList) => {
   const pathPatterns = { backend: {}, frontend: {} };
   for (const resource of resourceIdentifiers.backend) {
-    pathPatterns.backend[resource] = [backendBasePattern, allowedNamingPattern, resource].join(escapedSep);
+    pathPatterns.backend[resource] = [backendBasePattern, `${allowedNamingPattern}[${escapedSep}a-zA-Z0-9_-]+`, resource].join(escapedSep);
   }
   for (const resource of backendModuleList) {
     pathPatterns.backend[resource] = [backendBasePattern, resource].join(escapedSep);
