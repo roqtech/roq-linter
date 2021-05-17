@@ -17,6 +17,16 @@ ruleTesterInstance.run('no-business-logic', ruleUnderTest, {
         + '}',
       filename: 'backend/src/auth/dtos/auth-register.dto.ts',
     },
+    {
+      code: '@Entity()\n'
+        + 'export class anyEntity {\n'
+        + '   @BeforeInsert()\n'
+        + '   convertToJson(): void {\n'
+        + '     if (this.parameters) this.parameters = JSON.parse(this.parameters);\n'
+        + '   }\n'
+        + '}',
+      filename: 'backend/src/auth/entities/refresh-token.entity.ts',
+    },
   ],
   invalid: [
     {

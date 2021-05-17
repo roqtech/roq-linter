@@ -29,6 +29,16 @@ ruleTesterInstance.run('no-invalid-page-resource', ruleUnderTest, {
       export default VerifyEmailPage;`,
       filename: 'frontend/src/pages/verify-email/index.tsx',
     },
+    {
+      code: `/* UsersEditPage definition */
+      export default UsersEditPage;`,
+      filename: 'frontend/src/pages/users/edit/[id]/index.tsx',
+    },
+    {
+      code: `/* UsersCreateNewTestPage definition */
+      export default UsersCreateNewTestPage;`,
+      filename: 'frontend/src/pages/users/create/new/test/index.tsx',
+    },
   ],
   invalid: [
     {
@@ -81,6 +91,34 @@ ruleTesterInstance.run('no-invalid-page-resource', ruleUnderTest, {
         },
       ],
       filename: 'frontend/src/pages/verify-email/index.tsx',
+    },
+    {
+      code: `/* AnyOtherDirNamePage definition */
+      export default AnyOtherDirNamePage;`,
+      errors: [
+        {
+          messageId: 'invalidNestedPageResource',
+          line: 2,
+          column: 7,
+          endLine: 2,
+          endColumn: 42,
+        },
+      ],
+      filename: 'frontend/src/pages/users/edit/[id]/index.tsx',
+    },
+    {
+      code: `/* TestUsersPage definition */
+      export default TestUsersPage;`,
+      errors: [
+        {
+          messageId: 'invalidNestedPageResource',
+          line: 2,
+          column: 7,
+          endLine: 2,
+          endColumn: 36,
+        },
+      ],
+      filename: 'frontend/src/pages/users/edit/test/[id]/index.tsx',
     },
   ],
 });

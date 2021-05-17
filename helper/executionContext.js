@@ -5,13 +5,10 @@ const {
   escapedSep, resourceIdentifiers, allowedNamingPattern,
 } = require('../constants');
 
-const getPathPatterns = (backendBasePattern, frontendBasePattern, backendModuleList) => {
+const getPathPatterns = (backendBasePattern, frontendBasePattern) => {
   const pathPatterns = { backend: {}, frontend: {} };
   for (const resource of resourceIdentifiers.backend) {
     pathPatterns.backend[resource] = [backendBasePattern, `${allowedNamingPattern}[${escapedSep}a-zA-Z0-9_-]+`, resource].join(escapedSep);
-  }
-  for (const resource of backendModuleList) {
-    pathPatterns.backend[resource] = [backendBasePattern, resource].join(escapedSep);
   }
 
   for (const resource of resourceIdentifiers.frontend) {
@@ -30,7 +27,6 @@ const get = (context) => {
   let frontendBasePattern = `.*${escapedSep}frontend${escapedSep}src`;
   let backendTestsPattern = `.*${escapedSep}backend${escapedSep}tests`;
   let frontendTestsPattern = '';
-  const backendModuleList = [];
 
   if (pluginSettings) {
     const {
@@ -52,38 +48,25 @@ const get = (context) => {
       if (typeof frontendTestsBasePath !== 'string' || !path.isAbsolute(`/${frontendTestsBasePath}`)) throw new Error('Invalid setting value for frontendTestsBasePath. Correct Example : "frontend/tests" ');
       frontendTestsPattern = `.*${escapedSep}${frontendTestsBasePath.replace(/\//g, escapedSep)}`;
     }
-    const backendPath = backendBasePath || 'backend/src';
-    try {
-      const [backendPathInitToken] = backendPath.split('/').filter((e) => e !== '');
-      const rootPath = path.resolve('./').replace(backendPathInitToken, '');
-      const dirContents = fs.readdirSync(path.resolve(rootPath, backendPath), { withFileTypes: true });
-      dirContents.forEach((e) => {
-        if (e.isDirectory()) {
-          const nestedDirContents = fs.readdirSync(path.resolve(rootPath, backendPath, e.name),
-            { withFileTypes: true });
-          if (nestedDirContents.some((el) => el.isFile())) {
-            backendModuleList.push(e.name);
-          } else {
-            nestedDirContents.forEach(({ name: moduleName }) => {
-              backendModuleList.push([e.name, moduleName].join(escapedSep));
-            });
-          }
-        }
-      });
-    } catch (_) { /* */ }
-    const pathPatterns = getPathPatterns(backendBasePattern, frontendBasePattern, backendModuleList);
+
+    const pathPatterns = getPathPatterns(backendBasePattern, frontendBasePattern);
     return {
       backendBasePattern,
       frontendBasePattern,
       pathPatterns,
       backendTestsPattern,
       frontendTestsPattern,
-      backendModuleList,
     };
   }
   throw new Error('Add a "settings" object in eslint config file. With a nested object named "roq-linter", with allowed keys backendBasePath, frontendBasePath, backendTestsBasePath and frontendTestsBasePath which contain valid paths to the required resources.');
 };
 
+const isBackendModule = (dirPath) => {
+  const filesInDir = fs.readdirSync(dirPath);
+  return filesInDir.includes('services') || filesInDir.includes('resolvers') || filesInDir.includes('models');
+};
+
 module.exports = {
   get,
+  isBackendModule,
 };

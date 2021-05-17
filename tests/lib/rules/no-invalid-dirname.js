@@ -1,10 +1,23 @@
 const { RuleTester } = require('eslint');
 const ruleUnderTest = require('../../../lib/rules/no-invalid-dirname');
 
-const ruleTesterInstance = new RuleTester({ parserOptions: { ecmaVersion: 2021 } });
+const ruleTesterInstance = new RuleTester({
+  parserOptions: { ecmaVersion: 2021 },
+  settings: {
+    'roq-linter': {
+      backendBasePath: 'backend/src',
+      frontendBasePath: 'frontend/src',
+      backendTestsBasePath: 'backend/tests',
+    },
+  },
+});
 
 ruleTesterInstance.run('no-invalid-dirname', ruleUnderTest, {
   valid: [
+    {
+      code: '// File Path : frontend/src/pages/users/edit/[name]/index.tsx',
+      filename: 'frontend/src/pages/users/edit/[name]/index.tsx',
+    },
     {
       code: '// File Path : backend/src/auth/auth.module.ts',
       filename: 'backend/src/auth/auth.module.ts',
@@ -98,6 +111,24 @@ ruleTesterInstance.run('no-invalid-dirname', ruleUnderTest, {
         },
       ],
       filename: 'frontend/src/component/notification-dummy.v1.0.2/index.ts',
+      options: [{ casing: 'lowerCased', allowedSeparator: 'hyphen', noNumerics: true }],
+    },
+    {
+      code: '// File Path : frontend/src/pages/users/edit/test[name]/index.tsx',
+      errors: [
+        {
+          messageId: 'invalidDirName',
+          data: {
+            dirName: 'test[name]',
+            expectedDescription: 'It should be a lowerCased string without numbers and with hyphen separator(s)',
+          },
+          line: 1,
+          column: 1,
+          endLine: 1,
+          endColumn: 66,
+        },
+      ],
+      filename: 'frontend/src/pages/users/edit/test[name]/index.tsx',
       options: [{ casing: 'lowerCased', allowedSeparator: 'hyphen', noNumerics: true }],
     },
   ],

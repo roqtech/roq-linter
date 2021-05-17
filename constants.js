@@ -5,7 +5,7 @@ const escapedSep = path.sep === '/' ? '\/' : '\\\\';
 const allowedNamingPattern = '[a-zA-Z0-9_-]+';
 
 const resourceIdentifiers = {
-  backend: ['decorators', 'dtos', 'entities', 'enums', 'guards', 'interfaces', 'loaders', 'mappers', 'models', 'repositories', 'resolvers', 'services', 'strategies', 'scalars', 'schemas'],
+  backend: ['decorators', 'dtos', 'entities', 'enums', 'guards', 'interfaces', 'loaders', 'mappers', 'models', 'repositories', 'resolvers', 'services', 'strategies', 'scalars', 'schemas', 'config'],
   frontend: ['components', 'configuration', 'layouts', 'pages', 'shared', 'slices', 'styles', 'utils', 'views'],
   frontendCommon: ['interfaces', 'roq-hooks', 'roq-ui'],
 };
