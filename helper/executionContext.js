@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 
 const {
-  escapedSep, resourceIdentifiers, allowedNamingPattern,
+  escapedSep, resourceIdentifiers, allowedNamingPattern, moduleIdentifyingDirs,
 } = require('../constants');
 
 const getPathPatterns = (backendBasePattern, frontendBasePattern) => {
@@ -63,7 +63,7 @@ const get = (context) => {
 
 const isBackendModule = (dirPath) => {
   const filesInDir = fs.readdirSync(dirPath);
-  return filesInDir.includes('services') || filesInDir.includes('resolvers') || filesInDir.includes('models');
+  return filesInDir.some((e) => moduleIdentifyingDirs.includes(e));
 };
 
 module.exports = {
