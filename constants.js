@@ -4,7 +4,7 @@ const escapedSep = path.sep === '/' ? '\/' : '\\\\';
 
 const allowedNamingPattern = '[a-zA-Z0-9_-]+';
 
-const moduleIdentifyingDirs = ['services', 'resolvers', 'models', 'middlewares', 'sources'];
+const moduleIdentifyingDirs = ['services', 'resolvers', 'models', 'middlewares', 'sources', 'consoles'];
 
 const resourceIdentifiers = {
   backend: ['decorators', 'dtos', 'entities', 'enums', 'guards', 'interfaces', 'loaders', 'mappers', 'models', 'repositories', 'resolvers', 'services', 'strategies', 'scalars', 'schemas', 'config'],
