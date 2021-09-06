@@ -93,7 +93,7 @@ ruleTesterInstance.run('no-invalid-page-resource', ruleUnderTest, {
       filename: 'frontend/src/pages/verify-email/index.tsx',
     },
     {
-      code: `/* AnyOtherDirNamePage definition */
+      code: `/* UsersEditPage definition */
       export default AnyOtherDirNamePage;`,
       errors: [
         {

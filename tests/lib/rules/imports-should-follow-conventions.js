@@ -31,5 +31,16 @@ ruleTesterInstance.run('imports-should-follow-conventions', ruleUnderTest, {
       }],
       filename: 'sample.ts',
     },
+    {
+      code: 'import Something from "./folder/component"',
+      errors: [{
+        message: 'Use absolute path instead of relative.',
+        line: 1,
+        column: 1,
+        endLine: 1,
+        endColumn: 43,
+      }],
+      filename: 'sample.ts',
+    },
   ],
 });
