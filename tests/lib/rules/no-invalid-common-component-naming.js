@@ -15,19 +15,19 @@ const ruleTesterInstance = new RuleTester({
 ruleTesterInstance.run('no-invalid-common-component-naming', ruleUnderTest, {
   valid: [
     {
-      code: '// File Path : frontend/src/common/roq-ui/time-picker/time-picker-item.tsx',
-      filename: 'frontend/src/common/roq-ui/time-picker/time-picker-item.tsx',
+      code: '// File Path : frontend/src/modules/common/time-picker/time-picker-item.tsx',
+      filename: 'frontend/src/modules/common/components/time-picker/time-picker-item.tsx',
     },
     {
-      code: '// With options [\'select\'] File Path : frontend/src/common/roq-ui/select/option-group.tsx',
-      filename: 'frontend/src/common/roq-ui/select/option-group.tsx',
+      code: '// With options [\'select\'] File Path : frontend/src/modules/common/select/option-group.tsx',
+      filename: 'frontend/src/modules/common/components/select/option-group.tsx',
       options: [['select']],
     },
 
   ],
   invalid: [
     {
-      code: '// File Path : frontend/src/common/roq-ui/time-picker/picker-item.tsx',
+      code: '// File Path : frontend/src/modules/common/components/time-picker/picker-item.tsx',
       errors: [{
         messageId: 'missingComponentPrefix',
         data: {
@@ -36,10 +36,10 @@ ruleTesterInstance.run('no-invalid-common-component-naming', ruleUnderTest, {
         line: 1,
         column: 1,
         endLine: 1,
-        endColumn: 70,
+        endColumn: 82,
       },
       ],
-      filename: 'frontend/src/common/roq-ui/time-picker/picker-item.tsx',
+      filename: 'frontend/src/modules/common/components/time-picker/picker-item.tsx',
     },
     {
       code: '// With No options specified. File Path : frontend/src/common/roq-ui/select/option-group.tsx',
@@ -55,24 +55,7 @@ ruleTesterInstance.run('no-invalid-common-component-naming', ruleUnderTest, {
           endColumn: 93,
         },
       ],
-      filename: 'frontend/src/common/roq-ui/select/option-group.tsx',
-    },
-    {
-      code: '// With options [\'select\'] File Path : frontend/src/common/roq-ui/select/option.group.tsx',
-      errors: [
-        {
-          messageId: 'typeDetectedInFileName',
-          data: {
-            type: 'group',
-          },
-          line: 1,
-          column: 1,
-          endLine: 1,
-          endColumn: 90,
-        },
-      ],
-      filename: 'frontend/src/common/roq-ui/select/option.group.tsx',
-      options: [['select']],
+      filename: 'frontend/src/modules/common/components/select/option-group.tsx',
     },
   ],
 });

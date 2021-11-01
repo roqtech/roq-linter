@@ -16,11 +16,10 @@ module.exports = {
     'no-invalid-filename-chars-frontend': require('./lib/rules/no-invalid-filename-chars-frontend'),
     'no-invalid-filename-pattern': require('./lib/rules/no-invalid-filename-pattern'),
     'imports-should-follow-conventions': require('./lib/rules/imports-should-follow-conventions'),
-    'exports-should-entity-decorator': require('./lib/rules/exports-should-entity-decorator'),
+    'entities-should-follow-conventions': require('./lib/rules/entities-should-follow-conventions'),
     'define-http-status-enum': require('./lib/rules/define-http-status-enum'),
     'exports-should-module-decorator': require('./lib/rules/exports-should-module-decorator'),
     'exports-should-object-type-decorator': require('./lib/rules/exports-should-object-type-decorator'),
-    'correct-location-enums-types-interfaces': require('./lib/rules/correct-location-enums-types-interfaces'),
     'only-layouts-location': require('./lib/rules/only-layouts-location'),
     'repository-correct-export-annotation': require('./lib/rules/repository-correct-export-annotation'),
     'only-interface-export': require('./lib/rules/only-interface-export'),
@@ -50,7 +49,7 @@ module.exports = {
       rules: {
         /* Rules specific to backend to be added here */
         [`${pluginName}/no-business-logic`]: 'error',
-        [`${pluginName}/exports-should-entity-decorator`]: 'error',
+        [`${pluginName}/entities-should-follow-conventions`]: 'error',
         [`${pluginName}/only-interface-export`]: 'error',
         [`${pluginName}/exports-should-scalar-decorator`]: 'error',
         [`${pluginName}/exports-should-schema-decorator`]: 'error',
@@ -74,7 +73,6 @@ module.exports = {
       env: { browser: true, es2021: true },
       rules: {
         /* Rules specific to frontend to be added here */
-        [`${pluginName}/correct-location-enums-types-interfaces`]: 'error',
         [`${pluginName}/only-layouts-location`]: 'error',
         [`${pluginName}/view-correct-location-and-name`]: 'error',
         [`${pluginName}/no-invalid-hook-resource`]: 'error',

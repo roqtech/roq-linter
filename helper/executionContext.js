@@ -6,7 +6,7 @@ const {
 } = require('../constants');
 
 const getPathPatterns = (backendBasePattern, frontendBasePattern) => {
-  const pathPatterns = { backend: {}, frontend: {} };
+  const pathPatterns = { backend: {}, frontend: { moduleDir: { common: {} } } };
   for (const resource of resourceIdentifiers.backend) {
     pathPatterns.backend[resource] = [backendBasePattern, `${allowedNamingPattern}[${escapedSep}a-zA-Z0-9_-]+`, resource].join(escapedSep);
   }
@@ -16,8 +16,17 @@ const getPathPatterns = (backendBasePattern, frontendBasePattern) => {
   }
 
   for (const resource of resourceIdentifiers.frontendCommon) {
-    pathPatterns.frontend[resource] = [frontendBasePattern, 'common', resource].join(escapedSep);
+    pathPatterns.frontend.moduleDir.common[resource] = [frontendBasePattern, 'modules', 'common', resource].join(escapedSep);
   }
+
+  for (const resource of resourceIdentifiers.frontendModule) {
+    if (resource === 'components') {
+      pathPatterns.frontend.moduleDir[resource] = [frontendBasePattern, 'modules', allowedNamingPattern, resource, allowedNamingPattern].join(escapedSep);
+    } else {
+      pathPatterns.frontend.moduleDir[resource] = [frontendBasePattern, 'modules', allowedNamingPattern, resource].join(escapedSep);
+    }
+  }
+
   return pathPatterns;
 };
 

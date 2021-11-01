@@ -5,7 +5,7 @@ const ruleTesterInstance = new RuleTester({ parserOptions: { ecmaVersion: 2021, 
 
 ruleTesterInstance.run('imports-should-follow-conventions', ruleUnderTest, {
   valid: [
-    'import SomeComponent from "/common/components" ',
+    'import SomeComponent from "common/components" ',
     'import Something from "layout"',
   ],
   invalid: [
@@ -39,6 +39,28 @@ ruleTesterInstance.run('imports-should-follow-conventions', ruleUnderTest, {
         column: 1,
         endLine: 1,
         endColumn: 43,
+      }],
+      filename: 'sample.ts',
+    },
+    {
+      code: 'import Something from "tests/dummies/backend/auth/dtos/sample.ts"',
+      errors: [{
+        message: 'Imports should happen from a shared resource directory instead of directly from the resource file.',
+        line: 1,
+        column: 1,
+        endLine: 1,
+        endColumn: 66,
+      }],
+      filename: 'sample.ts',
+    },
+    {
+      code: 'import Something from "tests/dummies/backend/auth/dtos/sample"',
+      errors: [{
+        message: 'Imports should happen from a shared resource directory instead of directly from the resource file.',
+        line: 1,
+        column: 1,
+        endLine: 1,
+        endColumn: 63,
       }],
       filename: 'sample.ts',
     },

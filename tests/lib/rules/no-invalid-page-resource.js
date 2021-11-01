@@ -16,27 +16,27 @@ ruleTesterInstance.run('no-invalid-page-resource', ruleUnderTest, {
   valid: [
     {
       code: `/* accountActivatePage definition */
-       export default AccountActivatePage;`,
+       export default AccountActivateView;`,
       filename: 'frontend/src/pages/account-activate/index.tsx',
     },
     {
       code: `/* LoginPage definition */
-      export default LoginPage;`,
+      export default LoginView;`,
       filename: 'frontend/src/pages/login/index.tsx',
     },
     {
       code: `/* VerifyEmailPage definition */
-      export default VerifyEmailPage;`,
+      export default VerifyEmailView;`,
       filename: 'frontend/src/pages/verify-email/index.tsx',
     },
     {
       code: `/* UsersEditPage definition */
-      export default UsersEditPage;`,
+      export default UsersEditView;`,
       filename: 'frontend/src/pages/users/edit/[id]/index.tsx',
     },
     {
       code: `/* UsersCreateNewTestPage definition */
-      export default UsersCreateNewTestPage;`,
+      export default UsersCreateNewTestView;`,
       filename: 'frontend/src/pages/users/create/new/test/index.tsx',
     },
   ],
@@ -48,7 +48,7 @@ ruleTesterInstance.run('no-invalid-page-resource', ruleUnderTest, {
         {
           messageId: 'invalidPageResource',
           data: {
-            expectedPageName: 'AccountActivatePage',
+            expectedViewName: 'AccountActivateView',
           },
           line: 2,
           column: 8,
@@ -65,7 +65,7 @@ ruleTesterInstance.run('no-invalid-page-resource', ruleUnderTest, {
         {
           messageId: 'missingOrExtraDefaultExport',
           data: {
-            expectedPageName: 'AccountActivatePage',
+            expectedViewName: 'AccountActivateView',
           },
           line: 1,
           column: 1,
@@ -77,12 +77,12 @@ ruleTesterInstance.run('no-invalid-page-resource', ruleUnderTest, {
     },
     {
       code: `/* verifyEmailPage definition */
-      export default verifyEmailPage;`,
+      export default verifyEmailView;`,
       errors: [
         {
           messageId: 'invalidPageResource',
           data: {
-            expectedPageName: 'VerifyEmailPage',
+            expectedViewName: 'VerifyEmailView',
           },
           line: 2,
           column: 7,
@@ -94,7 +94,7 @@ ruleTesterInstance.run('no-invalid-page-resource', ruleUnderTest, {
     },
     {
       code: `/* UsersEditPage definition */
-      export default AnyOtherDirNamePage;`,
+      export default AnyOtherDirNameView;`,
       errors: [
         {
           messageId: 'invalidNestedPageResource',
@@ -108,7 +108,7 @@ ruleTesterInstance.run('no-invalid-page-resource', ruleUnderTest, {
     },
     {
       code: `/* TestUsersPage definition */
-      export default TestUsersPage;`,
+      export default TestUsersView;`,
       errors: [
         {
           messageId: 'invalidNestedPageResource',

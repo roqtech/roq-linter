@@ -4,24 +4,28 @@ const { sep } = require('../constants');
 
 const getFormattedNames = (array, isDir = false) => {
   const names = {
-    camelCased: '', pascalCased: '', dotSeparated: '', hyphenSeparated: '',
+    camelCased: '', pascalCased: '', snakeCased: '', dotSeparated: '', hyphenSeparated: '',
   };
   for (let t = 0; t < array.length; t += 1) {
     let part = array[t];
     part = part.toLowerCase();
 
     if (isDir && t === array.length - 1) { // required for directories
-      part = pluralize.singular(part);
+      if (part !== 'data') { // The singular form of data is datum, which looks like a word from an unknown world
+        part = pluralize.singular(part);
+      }
     }
 
     if (t === 0) {
       names.camelCased += part.charAt(0).toLowerCase() + part.substring(1);
       names.pascalCased += part.charAt(0).toUpperCase() + part.substring(1);
+      names.snakeCased += `${part}`;
       names.dotSeparated += `${part}`;
       names.hyphenSeparated += `${part}`;
     } else {
       names.camelCased += part.charAt(0).toUpperCase() + part.substring(1);
       names.pascalCased += part.charAt(0).toUpperCase() + part.substring(1);
+      names.snakeCased += `_${part}`;
       names.dotSeparated += `.${part}`;
       names.hyphenSeparated += `-${part}`;
     }
@@ -61,10 +65,9 @@ const get = (context) => {
   const parentDir = {
     absolutePath: path.resolve(absoluteFilePath, '../'),
     type: {
-      camelCased: '', pascalCased: '', dotSeparated: '', hyphenSeparated: '',
+      camelCased: '', pascalCased: '', snakeCased: '', dotSeparated: '', hyphenSeparated: '',
     },
   };
-
   const parentDirName = parentDir.absolutePath.split(sep).slice(-1)[0];
 
   const parentDirNameParts = getWordsFromCaseDifferedStrings(parentDirName);
@@ -76,10 +79,10 @@ const get = (context) => {
     nameWithoutExt: '',
     absolutePath: '',
     resourceType: {
-      camelCased: '', pascalCased: '', dotSeparated: '', hyphenSeparated: '',
+      camelCased: '', pascalCased: '', snakeCased: '', dotSeparated: '', hyphenSeparated: '',
     },
     resourceName: {
-      camelCased: '', pascalCased: '', dotSeparated: '', hyphenSeparated: '',
+      camelCased: '', pascalCased: '', snakeCased: '', dotSeparated: '', hyphenSeparated: '',
     },
   };
 

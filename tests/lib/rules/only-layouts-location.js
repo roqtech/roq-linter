@@ -1,5 +1,8 @@
 const { RuleTester } = require('eslint');
 const ruleUnderTest = require('../../../lib/rules/only-layouts-location');
+const { resolve } = require('path');
+
+const testDummiesBasePath = resolve('./tests/dummies');
 
 const ruleTesterInstance = new RuleTester({
   parserOptions: { ecmaVersion: 2021 },
@@ -17,19 +20,25 @@ ruleTesterInstance.run('only-layouts-location', ruleUnderTest, {
   valid: [
     {
       code: 'export const AuthLayout: FunctionComponent<> = () => {}',
-      filename: 'frontend/src/layouts/auth/auth.layout.tsx',
+      filename: resolve(testDummiesBasePath, 'frontend/src/layouts/auth/auth.layout.tsx'),
     },
   ],
   invalid: [
     {
       code: 'export const Auth: FunctionComponent<> = () => {}',
-      errors: [{ message: 'This location should have only layouts' }],
-      filename: 'frontend/src/layouts/auth/auth.layout.tsx',
+      errors: [{ message: 'This file should export only layout' }],
+      filename: resolve(testDummiesBasePath, 'frontend/src/layouts/auth/auth.layout.tsx'),
     },
     {
-      code: 'export const AuthLayout: FunctionComponent<> = () => {}',
-      errors: [{ message: 'This location should have only layouts' }],
-      filename: 'frontend/src/layouts/auth/auth.tsx',
+      code: 'export const MainLayout: FunctionComponent<> = () => {}',
+      errors: [{
+        messageId: 'missingLayoutFile',
+        data: {
+          layoutFileName: 'main.layout.tsx',
+          dirPath: resolve(testDummiesBasePath, 'frontend/src/layouts/main'),
+        },
+      }],
+      filename: resolve(testDummiesBasePath, 'frontend/src/layouts/main/main.tsx'),
     },
   ],
 });

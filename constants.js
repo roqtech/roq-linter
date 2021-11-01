@@ -8,15 +8,18 @@ const moduleIdentifyingDirs = ['services', 'resolvers', 'models', 'middlewares',
 
 const resourceIdentifiers = {
   backend: ['decorators', 'dtos', 'entities', 'enums', 'guards', 'interfaces', 'loaders', 'mappers', 'models', 'repositories', 'resolvers', 'services', 'strategies', 'scalars', 'schemas', 'config'],
-  frontend: ['components', 'configuration', 'layouts', 'pages', 'shared', 'slices', 'styles', 'utils', 'views'],
-  frontendCommon: ['interfaces', 'roq-hooks', 'roq-ui'],
+  frontend: ['configuration', 'layouts', 'modules', 'pages', 'scripts', 'styles', 'views'],
+  frontendCommon: ['components', 'errors', 'hooks', 'icons', 'interfaces', 'utils'],
+  frontendModule: ['components', 'actions', 'hocs', 'hooks', 'selectors', 'utils', 'interfaces', 'enums', 'schemas', 'types'],
 };
+
+const possibleFileExtensions = ['.ts', '.tsx', '.js'];
 
 module.exports = {
   sep: path.sep,
   escapedSep,
   allowedNamingPattern,
   resourceIdentifiers,
-  frontendCommonList: resourceIdentifiers.frontendCommon,
   moduleIdentifyingDirs,
+  possibleFileExtensions,
 };

@@ -16,7 +16,7 @@ ruleTesterInstance.run('no-invalid-hook-resource', ruleUnderTest, {
   valid: [
     {
       code: 'export const useAuth = ()=>{/* definition */}',
-      filename: 'frontend/src/common/roq-hooks/use-auth/use-auth.hook.ts',
+      filename: 'frontend/src/layouts/auth/hooks/use-auth.hook.ts',
     },
     {
       code: 'export const useNotifProvider = ()=>{/* definition */}',
@@ -34,7 +34,7 @@ ruleTesterInstance.run('no-invalid-hook-resource', ruleUnderTest, {
           },
         },
       ],
-      filename: 'frontend/src/common/roq-hooks/use-auth/use-auth.hook.ts',
+      filename: 'frontend/src/layouts/auth/hooks/use-auth.hook.ts',
     },
     {
       code: 'export const useNotifProvider = ()=>{/* definition */}',
@@ -47,7 +47,7 @@ ruleTesterInstance.run('no-invalid-hook-resource', ruleUnderTest, {
           endColumn: 55,
         },
       ],
-      filename: 'frontend/src/components/notifications/hooks/notif-provider.hook.ts',
+      filename: 'frontend/src/modules/notifications/hooks/notif-provider.hook.ts',
     },
     {
       code: 'export const useNotifProviderHoo = ()=>{/* definition */}',
@@ -70,7 +70,7 @@ ruleTesterInstance.run('no-invalid-hook-resource', ruleUnderTest, {
           endColumn: 58,
         },
       ],
-      filename: 'frontend/src/components/notifications/hooks/notif-provider.hook.ts',
+      filename: 'frontend/src/modules/notifications/hooks/notif-provider.hook.ts',
     },
   ],
 });
