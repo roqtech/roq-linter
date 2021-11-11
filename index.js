@@ -42,6 +42,7 @@ module.exports = {
     'no-invalid-dirname': require('./lib/rules/no-invalid-dirname'),
     'no-invalid-page-resource': require('./lib/rules/no-invalid-page-resource'),
     'no-invalid-style-resource': require('./lib/rules/no-invalid-style-resource'),
+    'no-invalid-resource-location': require('./lib/rules/no-invalid-resource-location'),
   },
   configs: {
     backendConfig: {
@@ -103,6 +104,7 @@ module.exports = {
         [`${pluginName}/no-invalid-filename-pattern`]: 'error',
         [`${pluginName}/imports-should-follow-conventions`]: 'error',
         [`${pluginName}/no-invalid-dirname`]: 'error',
+        [`${pluginName}/no-invalid-resource-location`]: 'error',
       },
     },
   },

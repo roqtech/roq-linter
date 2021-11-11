@@ -59,12 +59,21 @@ const get = (context) => {
     }
 
     const pathPatterns = getPathPatterns(backendBasePattern, frontendBasePattern);
+    const resourceRegex = {
+      component: [
+        new RegExp(`${[pathPatterns.frontend.moduleDir.common.components, allowedNamingPattern].join(escapedSep)}$`),
+        new RegExp(`${pathPatterns.frontend.moduleDir.components}$`),
+        new RegExp(`${[pathPatterns.frontend.layouts, allowedNamingPattern, 'components', allowedNamingPattern].join(escapedSep)}$`),
+      ],
+      partial: [new RegExp(`${[pathPatterns.frontend.views, allowedNamingPattern, 'partials', allowedNamingPattern].join(escapedSep)}$`)],
+    };
     return {
       backendBasePattern,
       frontendBasePattern,
       pathPatterns,
       backendTestsPattern,
       frontendTestsPattern,
+      resourceRegex,
     };
   }
   throw new Error('Add a "settings" object in eslint config file. With a nested object named "roq-linter", with allowed keys backendBasePath, frontendBasePath, backendTestsBasePath and frontendTestsBasePath which contain valid paths to the required resources.');
