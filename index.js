@@ -41,6 +41,7 @@ module.exports = {
     'no-invalid-common-component-naming': require('./lib/rules/no-invalid-common-component-naming'),
     'no-invalid-dirname': require('./lib/rules/no-invalid-dirname'),
     'no-invalid-page-resource': require('./lib/rules/no-invalid-page-resource'),
+    'no-invalid-style-resource': require('./lib/rules/no-invalid-style-resource'),
   },
   configs: {
     backendConfig: {
@@ -83,6 +84,7 @@ module.exports = {
         [`${pluginName}/no-invalid-page-resource`]: 'error',
         [`${pluginName}/lodash-destructuring-import-is-not-allowed`]: 'error',
         [`${pluginName}/no-invalid-filename-chars-frontend`]: 'error',
+        [`${pluginName}/no-invalid-style-resource`]: 'error',
       },
     },
     commonConfig: {
