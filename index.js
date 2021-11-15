@@ -11,7 +11,7 @@ module.exports = {
     'filename-suffix-mismatch': require('./lib/rules/filename-suffix-mismatch'),
     'no-use-deprecated-modules': require('./lib/rules/no-use-deprecated-modules'),
     'no-business-logic': require('./lib/rules/no-business-logic'),
-    'resolvers-parse-id': require('./lib/rules/resolvers-parse-id.js'),
+    'resolvers-parse-id': require('./lib/rules/resolvers-parse-id'),
     'no-invalid-filename-chars': require('./lib/rules/no-invalid-filename-chars'),
     'no-invalid-filename-chars-frontend': require('./lib/rules/no-invalid-filename-chars-frontend'),
     'no-invalid-filename-pattern': require('./lib/rules/no-invalid-filename-pattern'),
@@ -42,6 +42,7 @@ module.exports = {
     'no-invalid-dirname': require('./lib/rules/no-invalid-dirname'),
     'no-invalid-page-resource': require('./lib/rules/no-invalid-page-resource'),
     'no-invalid-style-resource': require('./lib/rules/no-invalid-style-resource'),
+    'no-invalid-partial-and-component-resource': require('./lib/rules/no-invalid-partial-and-component-resource'),
   },
   configs: {
     backendConfig: {
@@ -85,6 +86,7 @@ module.exports = {
         [`${pluginName}/lodash-destructuring-import-is-not-allowed`]: 'error',
         [`${pluginName}/no-invalid-filename-chars-frontend`]: 'error',
         [`${pluginName}/no-invalid-style-resource`]: 'error',
+        [`${pluginName}/no-invalid-partial-and-component-resource`]: 'error',
       },
     },
     commonConfig: {
