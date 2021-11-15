@@ -63,7 +63,7 @@ ruleTesterInstance.run('no-invalid-partial-and-component-resource', ruleUnderTes
         {
           messageId: 'invalidFileName',
           data: {
-            expectedFileName: 'notification.component.ts',
+            expectedFileName: 'notification.component.tsx',
           },
         },
       ],
