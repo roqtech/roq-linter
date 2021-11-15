@@ -43,6 +43,7 @@ module.exports = {
     'no-invalid-page-resource': require('./lib/rules/no-invalid-page-resource'),
     'no-invalid-style-resource': require('./lib/rules/no-invalid-style-resource'),
     'no-invalid-resource-location': require('./lib/rules/no-invalid-resource-location'),
+    'no-invalid-partial-and-component-resource': require('./lib/rules/no-invalid-partial-and-component-resource'),
   },
   configs: {
     backendConfig: {
@@ -86,6 +87,7 @@ module.exports = {
         [`${pluginName}/lodash-destructuring-import-is-not-allowed`]: 'error',
         [`${pluginName}/no-invalid-filename-chars-frontend`]: 'error',
         [`${pluginName}/no-invalid-style-resource`]: 'error',
+        [`${pluginName}/no-invalid-partial-and-component-resource`]: 'error',
       },
     },
     commonConfig: {
