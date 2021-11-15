@@ -61,11 +61,11 @@ const get = (context) => {
     const pathPatterns = getPathPatterns(backendBasePattern, frontendBasePattern);
     const resourceRegex = {
       component: [
-        new RegExp(`${[pathPatterns.frontend.moduleDir.common.components, allowedNamingPattern].join(escapedSep)}$`),
-        new RegExp(`${pathPatterns.frontend.moduleDir.components}$`),
+        new RegExp(`${pathPatterns.frontend.moduleDir.components}$`)],
+      partial: [
         new RegExp(`${[pathPatterns.frontend.layouts, allowedNamingPattern, 'components', allowedNamingPattern].join(escapedSep)}$`),
-      ],
-      partial: [new RegExp(`${[pathPatterns.frontend.views, allowedNamingPattern, 'partials', allowedNamingPattern].join(escapedSep)}$`)],
+        new RegExp(`${[pathPatterns.frontend.views, allowedNamingPattern, 'partials', allowedNamingPattern].join(escapedSep)}$`)],
+      layout: [new RegExp(`${[pathPatterns.frontend.layouts, allowedNamingPattern].join(escapedSep)}$`)],
     };
     return {
       backendBasePattern,

@@ -11,7 +11,7 @@ module.exports = {
     'filename-suffix-mismatch': require('./lib/rules/filename-suffix-mismatch'),
     'no-use-deprecated-modules': require('./lib/rules/no-use-deprecated-modules'),
     'no-business-logic': require('./lib/rules/no-business-logic'),
-    'resolvers-parse-id': require('./lib/rules/resolvers-parse-id.js'),
+    'resolvers-parse-id': require('./lib/rules/resolvers-parse-id'),
     'no-invalid-filename-chars': require('./lib/rules/no-invalid-filename-chars'),
     'no-invalid-filename-chars-frontend': require('./lib/rules/no-invalid-filename-chars-frontend'),
     'no-invalid-filename-pattern': require('./lib/rules/no-invalid-filename-pattern'),
