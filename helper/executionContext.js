@@ -63,7 +63,8 @@ const get = (context) => {
       component: [
         new RegExp(`${pathPatterns.frontend.moduleDir.components}$`)],
       partial: [
-        new RegExp(`${[pathPatterns.frontend.layouts, allowedNamingPattern, 'components', allowedNamingPattern].join(escapedSep)}$`),
+        new RegExp(`${[pathPatterns.frontend.moduleDir.components, 'partials', allowedNamingPattern].join(escapedSep)}$`),
+        new RegExp(`${[pathPatterns.frontend.layouts, allowedNamingPattern, 'partials', allowedNamingPattern].join(escapedSep)}$`),
         new RegExp(`${[pathPatterns.frontend.views, allowedNamingPattern, 'partials', allowedNamingPattern].join(escapedSep)}$`)],
       layout: [new RegExp(`${[pathPatterns.frontend.layouts, allowedNamingPattern].join(escapedSep)}$`)],
     };
