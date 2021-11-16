@@ -1,6 +1,6 @@
 const { RuleTester } = require('eslint');
-const ruleUnderTest = require('../../../lib/rules/only-layouts-location');
 const { resolve } = require('path');
+const ruleUnderTest = require('../../../lib/rules/only-layouts-location');
 
 const testDummiesBasePath = resolve('./tests/dummies');
 
