@@ -1,12 +1,26 @@
 const { RuleTester } = require('eslint');
 const ruleUnderTest = require('../../../lib/rules/imports-should-follow-conventions');
 
-const ruleTesterInstance = new RuleTester({ parserOptions: { ecmaVersion: 2021, sourceType: 'module' } });
+const ruleTesterInstance = new RuleTester({
+  parserOptions: { ecmaVersion: 2021, sourceType: 'module' },
+  settings: {
+    'roq-linter': {
+      backendBasePath: 'backend/src',
+      frontendBasePath: 'frontend/src',
+      backendTestsBasePath: 'backend/tests',
+    },
+  },
+
+});
 
 ruleTesterInstance.run('imports-should-follow-conventions', ruleUnderTest, {
   valid: [
     'import SomeComponent from "common/components" ',
     'import Something from "layout"',
+    {
+      code: 'import { AlertIconPartial } from "modules/common/components/alert-icon/partials"',
+      filename: 'frontend/src/modules/common/components/alert-icon/alert-icon.component.tsx',
+    },
   ],
   invalid: [
     {
@@ -63,6 +77,17 @@ ruleTesterInstance.run('imports-should-follow-conventions', ruleUnderTest, {
         endColumn: 63,
       }],
       filename: 'sample.ts',
+    },
+    {
+      code: 'import { AlertIconPartial } from "modules/common/components/alert-icon/partials"',
+      errors: [{
+        message: 'Importing partials from outside the parent view/component is disallowed',
+        line: 1,
+        column: 1,
+        endLine: 1,
+        endColumn: 81,
+      }],
+      filename: 'frontend/src/modules/common/components/some/some.component.tsx',
     },
   ],
 });
