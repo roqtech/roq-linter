@@ -95,5 +95,14 @@ ruleTesterInstance.run('no-invalid-resource-location', ruleUnderTest, {
       ],
       filename: 'frontend/src/layouts/main/components/notification/notifications.component.tsx',
     },
+    {
+      code: '// File Path : frontend/src/layouts/main/partials/notification/notification.tsx',
+      errors: [
+        {
+          message: 'The partials directory can only exist at the path pattern [views, layouts, components]/*/partials',
+        },
+      ],
+      filename: 'frontend/src/modules/partials/notification/notification.tsx',
+    },
   ],
 });
