@@ -78,7 +78,7 @@ ruleTesterInstance.run('no-invalid-resource-location', ruleUnderTest, {
       filename: 'frontend/src/modules/components/notifications/notifications.styles.tsx',
     },
     {
-      code: '// File Path : frontend/src/modules/common/components/notification/notifications.component.tsx',
+      code: '// File Path : frontend/src/layouts/main/components/notification/notifications.component.tsx',
       errors: [
         {
           message: 'Layouts should have partials instead of components. A good start to fix this could be to rename super parent "components" dir to "partials"',
@@ -88,6 +88,9 @@ ruleTesterInstance.run('no-invalid-resource-location', ruleUnderTest, {
         },
         {
           message: 'The file-name and the parent directory name should match',
+        },
+        {
+          message: 'Components directory can only exist at the following path pattern modules/*/components',
         },
       ],
       filename: 'frontend/src/layouts/main/components/notification/notifications.component.tsx',
