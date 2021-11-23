@@ -51,7 +51,7 @@ ruleTesterInstance.run('no-invalid-resource-location', ruleUnderTest, {
       code: 'export const dialogPartial = ()=>{/* definition */}',
       errors: [
         {
-          message: 'All partials and their related styles should be placed either in their own directory (.../partials/{partial-name}/{partial-name}.partial.tsx) or alongwith a related component in their directory',
+          message: 'All partials and their related styles should be placed either in their own directory (.../partials/{partial-name}/{partial-name}.partial.tsx)',
         },
         {
           message: 'The file-name and the parent directory name should match',
