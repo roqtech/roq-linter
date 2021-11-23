@@ -36,19 +36,25 @@ ruleTesterInstance.run('no-invalid-resource-location', ruleUnderTest, {
   ],
   invalid: [
     {
-      code: 'export const useAuth = ()=>{/* definition */}',
+      code: 'export const dialog = ()=>{/* definition */}',
       errors: [
         {
           message: 'All components and their related styles should be placed in their own directory (.../components/{component-name}/{component-name}.component.tsx)',
+        },
+        {
+          message: 'The file-name and the parent directory name should match',
         },
       ],
       filename: 'frontend/src/modules/common/components/dialog.component.tsx',
     },
     {
-      code: 'export const useAuth = ()=>{/* definition */}',
+      code: 'export const dialogPartial = ()=>{/* definition */}',
       errors: [
         {
           message: 'All partials and their related styles should be placed either in their own directory (.../partials/{partial-name}/{partial-name}.partial.tsx) or alongwith a related component in their directory',
+        },
+        {
+          message: 'The file-name and the parent directory name should match',
         },
       ],
       filename: 'frontend/src/modules/common/components/dialog.partial.tsx',
@@ -63,10 +69,25 @@ ruleTesterInstance.run('no-invalid-resource-location', ruleUnderTest, {
       filename: 'frontend/src/modules/common/components/notification/notifications.component.tsx',
     },
     {
+      code: '// File Path : frontend/src/modules/components/notifications/notifications.styles.tsx',
+      errors: [
+        {
+          message: 'Components directory can only exist at the following path pattern modules/*/components',
+        },
+      ],
+      filename: 'frontend/src/modules/components/notifications/notifications.styles.tsx',
+    },
+    {
       code: '// File Path : frontend/src/modules/common/components/notification/notifications.component.tsx',
       errors: [
         {
           message: 'Layouts should have partials instead of components. A good start to fix this could be to rename super parent "components" dir to "partials"',
+        },
+        {
+          message: 'All components and their related styles should be placed in their own directory (.../components/{component-name}/{component-name}.component.tsx)',
+        },
+        {
+          message: 'The file-name and the parent directory name should match',
         },
       ],
       filename: 'frontend/src/layouts/main/components/notification/notifications.component.tsx',
