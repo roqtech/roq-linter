@@ -29,9 +29,16 @@ ruleTesterInstance.run('no-invalid-resource-location', ruleUnderTest, {
       filename: 'frontend/src/modules/common/components/notification/notification.styles.ts',
     },
     {
-      code: `export interface NotificationClasses {}
-      export const useNotificationStyles = ()=>{/* definition */}`,
+      code: 'export const DropPartial = ()=>{/* definition */} // File Path : frontend/src/views/files/partials/drop/drop.partial.ts',
       filename: 'frontend/src/views/files/partials/drop/drop.partial.ts',
+    },
+    {
+      code: 'export const DropPartial = ()=>{/* definition */} // File Path : frontend/src/layouts/layA/partials/drop/drop.partial.ts',
+      filename: 'frontend/src/layouts/layA/partials/drop/drop.partial.ts',
+    },
+    {
+      code: 'export const DropPartial = ()=>{/* definition */} // File Path : frontend/src/modules/modA/components/comp1/partials/drop/drop.partial.ts',
+      filename: 'frontend/src/modules/modA/components/comp1/partials/drop/drop.partial.ts',
     },
   ],
   invalid: [
